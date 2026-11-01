@@ -115,8 +115,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="flex items-center gap-3">
           <div className="h-10 w-28 flex items-center justify-center">
             <img 
-              src="/logo.jpeg" 
-              alt="Brick Four Logo" 
+              src="/logo.png" 
+              alt="Nyati Logo" 
               className="h-full w-full object-contain"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';

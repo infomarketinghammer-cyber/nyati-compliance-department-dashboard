@@ -1096,7 +1096,7 @@ export const PersonalDashboardView: React.FC<PersonalDashboardViewProps> = ({
                     <span className="text-[10px] text-slate-400 block mt-0.5">
                       {selectedFile
                         ? `${(selectedFile.size / 1024).toFixed(1)} KB • File attached`
-                        : 'PDF drawings, sanction reports, PNG photos, or DOCX memos'}
+                        : 'PDF filings, acknowledgements, PNG screenshots, or DOCX memos'}
                     </span>
                   </label>
                 </div>
@@ -1109,7 +1109,7 @@ export const PersonalDashboardView: React.FC<PersonalDashboardViewProps> = ({
                   required
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Summarize the work done, drawings prepared, authority visits, or sanction references..."
+                  placeholder="Summarize the work done, filings made, authority interactions, or acknowledgement references..."
                   className="w-full px-3 py-2 border border-slate-300 rounded-xl text-slate-800 focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
@@ -1286,7 +1286,7 @@ export const PersonalDashboardView: React.FC<PersonalDashboardViewProps> = ({
                       rows={2}
                       value={approvalRemarks}
                       onChange={(e) => setApprovalRemarks(e.target.value)}
-                      placeholder="e.g. Excellent drawing quality. Municipal sanction criteria fully met."
+                      placeholder="e.g. Evidence verified. Filing completed within the statutory due date."
                       className="w-full px-3 py-2 border border-slate-300 rounded-xl text-slate-800"
                     />
                   </div>
@@ -1301,7 +1301,7 @@ export const PersonalDashboardView: React.FC<PersonalDashboardViewProps> = ({
                     required
                     value={rejectRemarks}
                     onChange={(e) => setRejectRemarks(e.target.value)}
-                    placeholder="Specify which parts of the drawing, document or calculations require revision..."
+                    placeholder="Specify which parts of the filing, document or calculations require revision..."
                     className="w-full px-3 py-2 border border-rose-300 rounded-xl text-slate-800"
                   />
                 </div>

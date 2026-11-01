@@ -8,7 +8,7 @@ const description =
 export const metadata: Metadata = {
   title: 'Compliance Department Dashboard',
   description,
-  icons: { icon: { url: '/logo.jpeg', type: 'image/jpeg' } },
+  icons: { icon: { url: '/logo.png', type: 'image/png' } },
   openGraph: {
     title: 'Compliance Department Dashboard',
     description,

@@ -87,7 +87,7 @@ export async function askLegalIntelligenceAssistant(
     try {
       const response = await client.models.generateContent({
         model: 'gemini-3.8-flash',
-        contents: `You are the AI Legal Intelligence Advisor for the Legal Department of Brick Four (a leading Real Estate & Property Development organization).
+        contents: `You are the AI Legal Intelligence Advisor for the Legal Department of Nyati.
 You have real-time access to the department's actual KRA/KPI framework, operational records (contracts, RERA compliance, litigations, risks, land due diligence, approvals), and calculated scores.
 
 Analyze the question based ONLY on the factual context provided below.

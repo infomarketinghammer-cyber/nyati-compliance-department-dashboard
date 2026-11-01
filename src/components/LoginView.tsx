@@ -55,8 +55,8 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
           <div className="flex items-center gap-3">
             <div className="h-10 w-28 flex items-center justify-center">
               <img
-                src="/logo.jpeg"
-                alt="Brick Four Logo"
+                src="/logo.png"
+                alt="Nyati Logo"
                 className="h-full w-full object-contain"
                 onError={(e) => {
                   (e.target as HTMLElement).style.display = 'none';
@@ -108,7 +108,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                   aria-label="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. dwarka@brickfour.com"
+                  placeholder="e.g. madhav.oak@company.com"
                   className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all font-mono font-medium"
                 />
               </div>
@@ -160,7 +160,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
 
       {/* Footer */}
       <footer className="border-t border-slate-200 bg-white py-3 px-6 text-center text-xs text-slate-500">
-        Brick Four Compliance Department • Confidential Performance Management Portal
+        Nyati Compliance Department • Confidential Performance Management Portal
       </footer>
     </div>
   );
