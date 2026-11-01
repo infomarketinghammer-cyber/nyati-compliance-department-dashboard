@@ -93,3 +93,6 @@ export const POST = withAuth<{ entity: string }>((ctx) => {
 
   return json(newItem, 201);
 });
+
+// Methods this path does not implement fall through to the API 404, as in the Express app
+export { apiNotFound as PUT, apiNotFound as PATCH, apiNotFound as DELETE } from '@/src/server/http';

@@ -42,3 +42,6 @@ export const PUT = withAdmin<{ id: string }>((ctx) => {
 
   return json(kra);
 });
+
+// Methods this path does not implement fall through to the API 404, as in the Express app
+export { apiNotFound as GET, apiNotFound as POST, apiNotFound as PATCH, apiNotFound as DELETE } from '@/src/server/http';

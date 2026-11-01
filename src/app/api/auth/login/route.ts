@@ -1,13 +1,15 @@
 import { db } from '@/src/server/db';
 import { passwordsMatch, sanitizeUser, signSessionToken } from '@/src/server/auth';
-import { json, readJsonBody } from '@/src/server/http';
+import { badRequestBody, json, readJsonBody } from '@/src/server/http';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // Authentication: login by corporate email (or its local part) and exact password
 export async function POST(req: Request) {
-  const { email, password } = (await readJsonBody(req)) || {};
+  const body = await readJsonBody(req);
+  if (body === undefined) return badRequestBody();
+  const { email, password } = body || {};
   const state = db.getState();
 
   if (typeof email !== 'string' || typeof password !== 'string' || !email.trim() || !password.trim()) {
@@ -43,3 +45,6 @@ export async function POST(req: Request) {
 
   return json({ success: true, user: safeUser, token });
 }
+
+// Methods this path does not implement fall through to the API 404, as in the Express app
+export { apiNotFound as GET, apiNotFound as PUT, apiNotFound as PATCH, apiNotFound as DELETE } from '@/src/server/http';

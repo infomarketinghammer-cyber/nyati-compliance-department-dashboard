@@ -30,11 +30,22 @@ export function json(data: unknown, status = 200) {
   return NextResponse.json(data, { status });
 }
 
-// Equivalent of express.json(): an absent or unparseable body becomes {}
+// Equivalent of express.json() (strict mode): only application/json bodies are parsed, an absent body
+// becomes {}, and malformed or non-object JSON yields undefined so the caller can answer 400 as Express did.
 export async function readJsonBody(req: Request): Promise<any> {
-  const parsed = await req.json().catch(() => ({}));
-  return parsed && typeof parsed === 'object' ? parsed : {};
+  const mime = (req.headers.get('content-type') || '').split(';')[0].trim().toLowerCase();
+  if (mime !== 'application/json') return {};
+  const raw = await req.text().catch(() => '');
+  if (!raw.trim()) return {};
+  try {
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : undefined;
+  } catch {
+    return undefined;
+  }
 }
+
+export const badRequestBody = () => new Response('Bad Request', { status: 400, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
 
 // Session authentication: the organization is always taken from the verified session, never from a client header
 export function resolveSession(req: Request) {
@@ -70,6 +81,11 @@ function readQuery(req: Request): Query {
 
 function wrap<P>(handler: Handler<P>, adminOnly: boolean) {
   return async (req: Request, segment: RouteSegment<P>): Promise<Response> => {
+    // The body is parsed before authentication, matching the express.json() -> session middleware order
+    const hasBody = req.method !== 'GET' && req.method !== 'HEAD';
+    const body = hasBody ? await readJsonBody(req) : {};
+    if (body === undefined) return badRequestBody();
+
     const session = resolveSession(req);
     if (!session.user) {
       return json({ error: UNAUTHORIZED_ERROR }, 401);
@@ -80,7 +96,6 @@ function wrap<P>(handler: Handler<P>, adminOnly: boolean) {
     }
 
     const user = session.user;
-    const hasBody = req.method !== 'GET' && req.method !== 'HEAD';
     return handler({
       req,
       user,
@@ -90,7 +105,7 @@ function wrap<P>(handler: Handler<P>, adminOnly: boolean) {
       sessionToken: session.sessionToken!,
       // Audit identity of the authenticated caller
       actor: () => ({ userId: user.id, userName: user.name, userRole: user.role }),
-      body: hasBody ? await readJsonBody(req) : {},
+      body,
       query: readQuery(req),
       params: segment?.params ? await segment.params : ({} as P),
     });
@@ -104,3 +119,8 @@ export function withAuth<P = {}>(handler: Handler<P>) {
 export function withAdmin<P = {}>(handler: Handler<P>) {
   return wrap(handler, true);
 }
+
+// Unknown API routes and unsupported methods return a JSON 404 after the session check, as the Express app did
+export const apiNotFound = withAuth((ctx) =>
+  json({ error: `API route not found: ${ctx.req.method} ${new URL(ctx.req.url).pathname}` }, 404)
+);

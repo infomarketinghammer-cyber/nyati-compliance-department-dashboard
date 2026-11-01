@@ -21,3 +21,6 @@ export const POST = withAuth(async (ctx) => {
     return json({ error: 'AI advisor error', details: err?.message }, 500);
   }
 });
+
+// Methods this path does not implement fall through to the API 404, as in the Express app
+export { apiNotFound as GET, apiNotFound as PUT, apiNotFound as PATCH, apiNotFound as DELETE } from '@/src/server/http';

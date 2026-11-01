@@ -82,3 +82,6 @@ export const POST = withAdmin((ctx) => {
 
   return json(measurement);
 });
+
+// Methods this path does not implement fall through to the API 404, as in the Express app
+export { apiNotFound as PUT, apiNotFound as PATCH, apiNotFound as DELETE } from '@/src/server/http';
