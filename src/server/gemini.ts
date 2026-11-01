@@ -1,6 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
-import { db } from './db.js';
-import { computeDepartmentScore } from './calculationEngine.js';
+import { db } from './db';
+import { computeDepartmentScore } from './calculationEngine';
 
 let geminiClient: GoogleGenAI | null = null;
 

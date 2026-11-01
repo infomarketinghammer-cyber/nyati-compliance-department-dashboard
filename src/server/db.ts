@@ -24,13 +24,13 @@ import type {
   NotificationItem,
   PerformanceReview,
   KPISubmission,
-} from '../src/types.js';
+} from '../types';
 import {
   DEFAULT_SCORING_SETTINGS,
   calculateKPIAchievement,
   autoCalculateKPIActual,
   calculateOperationalMetrics,
-} from './calculationEngine.js';
+} from './calculationEngine';
 
 export interface DatabaseState {
   organizations: Organization[];
@@ -2784,4 +2784,6 @@ class MemoryDatabase {
   }
 }
 
-export const db = new MemoryDatabase();
+// Cached on globalThis so Next.js dev hot reloads (which re-evaluate this module) do not re-seed the database
+const globalForDb = globalThis as unknown as { __db?: MemoryDatabase };
+export const db = (globalForDb.__db ??= new MemoryDatabase());

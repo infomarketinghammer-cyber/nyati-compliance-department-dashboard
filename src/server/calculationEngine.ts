@@ -14,7 +14,7 @@ import type {
   PropertyDueDiligence,
   ProjectApproval,
   LegalTask,
-} from '../src/types.js';
+} from '../types';
 
 export const DEFAULT_SCORING_SETTINGS: ScoringSettings = {
   maxAchievementCap: 100, // Capped at 100% unless configured
