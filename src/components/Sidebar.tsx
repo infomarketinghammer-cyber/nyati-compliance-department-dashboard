@@ -113,7 +113,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Branding Header */}
       <div className="bg-transparent px-5 py-3.5 border-b border-teal-800/30 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-28 flex items-center justify-center">
+          <div className="h-12 w-12 p-1 bg-white rounded-lg shadow-sm flex items-center justify-center shrink-0">
             <img 
               src="/logo.png" 
               alt="Nyati Logo" 

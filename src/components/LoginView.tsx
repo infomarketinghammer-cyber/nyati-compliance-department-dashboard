@@ -48,12 +48,12 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-between selection:bg-brand-gradient selection:text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-between selection:bg-teal-600 selection:text-white">
       {/* Top Bar with Clean White Logo Header */}
       <header className="bg-brand-gradient border-b border-teal-800/30 px-6 py-3.5 shadow-2xs text-white">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-28 flex items-center justify-center">
+            <div className="h-12 w-12 p-1 bg-white rounded-lg shadow-sm flex items-center justify-center shrink-0">
               <img
                 src="/logo.png"
                 alt="Nyati Logo"
@@ -96,7 +96,8 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
             </div>
           )}
 
-          <form onSubmit={handleFormLogin} className="space-y-4 text-xs">
+          {/* autoComplete off keeps the browser from pre-filling saved credentials on page load */}
+          <form onSubmit={handleFormLogin} autoComplete="off" className="space-y-4 text-xs">
             <div>
               <label className="block text-slate-700 font-semibold mb-1.5">Email</label>
               <div className="relative">
@@ -104,7 +105,8 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                 <input
                   type="email"
                   required
-                  autoComplete="username"
+                  name="login-email"
+                  autoComplete="off"
                   aria-label="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -123,7 +125,8 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
-                  autoComplete="current-password"
+                  name="login-password"
+                  autoComplete="new-password"
                   aria-label="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
