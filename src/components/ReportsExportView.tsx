@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo, useState } from 'react';
 import { FileSpreadsheet, Download, Printer, FileText, Calendar } from 'lucide-react';
 import {

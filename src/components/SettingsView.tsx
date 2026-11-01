@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import { Settings, Save, CheckCircle2, Sliders, ShieldCheck, AlertCircle } from 'lucide-react';
 import { ScoringSettings } from '../types';

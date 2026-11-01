@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { Calendar, Bell, Sparkles, X, LogOut } from 'lucide-react';
 import { PerformancePeriod, NotificationItem, User } from '../types';

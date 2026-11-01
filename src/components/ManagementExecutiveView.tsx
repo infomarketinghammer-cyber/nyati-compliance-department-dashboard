@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { ShieldAlert, Scale, FileCheck, CheckCircle2, AlertTriangle, Building } from 'lucide-react';
 import { ScoringCalculationResponse } from '../services/api';

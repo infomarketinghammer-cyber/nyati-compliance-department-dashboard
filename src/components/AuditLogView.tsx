@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { History, Search, Shield, Filter, Calendar, UserCheck } from 'lucide-react';
 import { AuditLogEntry } from '../types';

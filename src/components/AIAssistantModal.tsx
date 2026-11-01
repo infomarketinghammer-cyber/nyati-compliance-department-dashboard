@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { Sparkles, X, Send, Bot, User as UserIcon, HelpCircle, ArrowRight } from 'lucide-react';
 import { api } from '../services/api';

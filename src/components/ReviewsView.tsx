@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { FileText, Plus, CheckCircle2, AlertTriangle, AlertOctagon, Award, TrendingUp, Sparkles } from 'lucide-react';
 import { PerformanceReview, PerformancePeriod, ScoringSettings } from '../types';

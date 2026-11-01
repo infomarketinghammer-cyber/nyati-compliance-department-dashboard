@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useMemo, useState } from 'react';
 import { Users, CheckCircle2, Clock, XCircle, Crown, Search, Award, X } from 'lucide-react';
 import { User, KPI, KPISubmission, PerformancePeriod } from '../types';
